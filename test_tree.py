@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
 
 	net, path_label_file,path_images,name_label_file,analyzed_layer= load_models.load_models(name_net, dataset_name,classes)
-	'''	
+	
 	if dataset_name == 'cat_dog':
 		path_images = 'datasets/cat_dog/'
 		net.load_state_dict(torch.load('../checkpoints/cat_dog_'+name_net+'_weights.pth',map_location='cuda'))
@@ -134,25 +134,7 @@ if __name__ == "__main__":
 		path_images = 'datasets/cifar10/'
 		net.load_state_dict(torch.load('checkpoints/cifar10/'+name_net+'_weights.pth'))
 		
-	'''
-	if dataset_name == 'cat_dog':
-		path_images = '../../../Trainings/binary_task_cat_dog/data/train/'
-		path_label_file = '../'+path_label_file
-		net.load_state_dict(torch.load('../checkpoints/cat_dog_'+name_net+'_weights.pth',map_location='cuda'))
-	if dataset_name == 'cifar10':
-		path_images = '../datasets/cifar10/'
-		path_label_file = '../'+path_label_file
-		net.load_state_dict(torch.load('../checkpoints/cifar10/'+name_net+'_weights.pth'))
-		'''
-		checkpoint = torch.load('../../../RIG_tests/cifar10/vgg16_bn/version_1/checkpoints/epoch=93-step=18423.ckpt')
-		print(checkpoint)
-		net = test_individual_feat_map.CIFAR10Module(args)
-		net.load_state_dict(checkpoint['state_dict'])
-		net = net.model
-		torch.save(net.state_dict(), '../checkpoints/cifar10/'+name_net+'_weights.pth')
-		exit()
-		'''
-		#net.load_state_dict(checkpoint.model)
+	
 	net = net.to(device)
 	net.eval()
 
